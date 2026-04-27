@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar';
 import DraftingForm from './components/DraftingForm';
 import LetterPreview from './components/LetterPreview';
 import { generateLetter } from './lib/gemini';
-import { ShieldAlert, AlertCircle, X, FileText } from 'lucide-react';
+import { ShieldAlert, AlertCircle, X, FileText, CheckCircle2 } from 'lucide-react';
 
 export interface UploadedFile {
   id: string;
@@ -98,39 +98,46 @@ function App() {
 
             <div className="relative">
               <LetterPreview content={generatedLetter} />
-              
-              {/* Compare Prompt Popup */}
-              {showComparePrompt && generatedLetter && (
-                <div className="absolute -top-4 right-0 transform -translate-y-full animate-in fade-in slide-in-from-bottom-4 duration-300">
-                  <div className="bg-blue-600 text-white p-4 rounded-xl shadow-xl flex items-center gap-4 border border-blue-500">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-sm">Draft Generated!</span>
-                      <span className="text-xs text-blue-100">Compare with original source?</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={() => {
-                          setIsComparing(true);
-                          setShowComparePrompt(false);
-                        }}
-                        className="px-3 py-1 bg-white text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-50 transition-colors"
-                      >
-                        Compare
-                      </button>
-                      <button 
-                        onClick={() => setShowComparePrompt(false)}
-                        className="p-1 hover:bg-blue-700 rounded-full transition-colors"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
       </main>
+
+      {/* Compare Prompt Modal */}
+      {showComparePrompt && generatedLetter && (
+        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-[70] p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-8 shadow-2xl border border-slate-200 max-w-md w-full animate-in zoom-in-95 duration-200">
+            <div className="flex flex-col items-center text-center gap-4 mb-8">
+              <div className="bg-green-100 p-4 rounded-full">
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-2xl text-slate-900 mb-2">Draft Generated!</h3>
+                <p className="text-slate-500 leading-relaxed">
+                  Your government draft is ready. Would you like to compare it with your original source documents?
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => setShowComparePrompt(false)}
+                className="px-6 py-3 border border-slate-200 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setIsComparing(true);
+                  setShowComparePrompt(false);
+                }}
+                className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Comparison Modal */}
       {isComparing && (
@@ -150,7 +157,7 @@ function App() {
                 <X className="w-6 h-6 text-slate-500" />
               </button>
             </div>
-            
+
             <div className="flex-1 flex overflow-hidden bg-slate-100">
               {/* Left Side: Uploaded Content */}
               <div className="w-1/2 flex flex-col border-r border-slate-300">
@@ -178,7 +185,7 @@ function App() {
                 </div>
               </div>
             </div>
-            
+
             <div className="px-8 py-4 border-t border-slate-200 bg-slate-50 flex justify-end">
               <button
                 onClick={() => setIsComparing(false)}
