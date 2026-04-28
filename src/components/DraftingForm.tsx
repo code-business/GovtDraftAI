@@ -165,7 +165,7 @@ const DraftingForm: React.FC<DraftingFormProps> = ({
                   className="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg group hover:border-blue-300 transition-all"
                 >
                   <div className="flex items-center gap-3 overflow-hidden">
-                    <FileText className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                    <FileText className="w-5 h-5 text-blue-500 shrink-0" />
                     <span className="text-sm font-medium text-slate-700 truncate">{file.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
