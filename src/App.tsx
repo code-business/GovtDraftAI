@@ -80,7 +80,7 @@ function App() {
 
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3 text-red-700">
-              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 shrink-0" />
               <p className="text-sm">{error}</p>
             </div>
           )}
@@ -105,7 +105,7 @@ function App() {
 
       {/* Compare Prompt Modal */}
       {showComparePrompt && generatedLetter && (
-        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-[70] p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-70] p-4 backdrop-blur-sm">
           <div className="bg-white rounded-2xl p-8 shadow-2xl border border-slate-200 max-w-md w-full animate-in zoom-in-95 duration-200">
             <div className="flex flex-col items-center text-center gap-4 mb-8">
               <div className="bg-green-100 p-4 rounded-full">
@@ -141,7 +141,7 @@ function App() {
 
       {/* Comparison Modal */}
       {isComparing && (
-        <div className="fixed inset-0 bg-slate-900/80 flex items-center justify-center z-[60] p-6 backdrop-blur-md">
+        <div className="fixed inset-0 bg-slate-900/80 flex items-center justify-center z-60 p-6 backdrop-blur-md">
           <div className="bg-white rounded-2xl w-full h-full max-w-[95vw] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
             <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-white">
               <div className="flex items-center gap-3">
